@@ -6,21 +6,10 @@ export const store = reactive({
   error: null,
 });
 
-import axios from "axios";
-
 export const config = {
   method: "get",
-  url: "https://api.themoviedb.org/3/search/movie",
   params: {
     api_key: "63d68752590a1ed32e2214c0e46f4a63",
-    query: "",
+    query: "matrix",
   },
 };
-
-axios(config)
-  .then(function (response) {
-    console.log(response.data);
-  })
-  .catch(function (error) {
-    console.log(error);
-  });

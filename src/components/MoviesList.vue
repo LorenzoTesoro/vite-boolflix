@@ -17,7 +17,14 @@ export default {
 
 <template>
   <h2>Movies</h2>
-  <ul>
+  <ul class="">
     <MovieItem :movie="movie" v-for="movie in store.movies" />
   </ul>
 </template>
+
+<style>
+@use "../node_modules/bootstrap/scss/bootstrap.scss";
+ul {
+  display: flex;
+}
+</style>

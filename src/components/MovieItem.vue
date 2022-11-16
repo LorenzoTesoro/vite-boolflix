@@ -10,6 +10,7 @@ export default {
 
 <template>
   <li>
+    <img :src="`https://image.tmdb.org/t/p/w185${movie.poster_path}`" alt="" />
     <p>Titolo: {{ movie.title || movie.name }}</p>
     <p>Titolo originale: {{ movie.original_title || movie.original_name }}</p>
     <p>
@@ -41,7 +42,9 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-img {
+@use "../node_modules/bootstrap/scss/bootstrap.scss";
+
+p img {
   width: 20px;
   aspect-ratio: 1;
 }

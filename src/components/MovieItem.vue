@@ -37,7 +37,10 @@ export default {
       />
       <span v-else>{{ movie.original_language }}</span>
     </p>
-    <p>Voto medio: {{ movie.vote_average }}</p>
+    <p class="star">
+      Voto medio: <font-awesome-icon icon="fa-solid fa-star" />
+      <!-- Todo: rendere dinamico il n di stelle generate -->
+    </p>
   </li>
 </template>
 

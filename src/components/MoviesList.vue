@@ -23,7 +23,6 @@ export default {
 </template>
 
 <style>
-@use "../node_modules/bootstrap/scss/bootstrap.scss";
 ul {
   display: flex;
 }

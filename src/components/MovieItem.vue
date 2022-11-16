@@ -9,9 +9,9 @@ export default {
 
 <template>
   <li>
-    <p>{{ movie.title }}</p>
-    <p>{{ movie.original_title }}</p>
-    <p>{{ movie.original_language }}</p>
-    <p>{{ movie.vote_average }}</p>
+    <p>Titolo: {{ movie.title }}</p>
+    <p>Titolo originale: {{ movie.original_title }}</p>
+    <p>Lingua originale: {{ movie.original_language }}</p>
+    <p>Voto medio: {{ movie.vote_average }}</p>
   </li>
 </template>

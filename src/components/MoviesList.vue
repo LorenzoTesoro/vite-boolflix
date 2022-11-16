@@ -4,11 +4,13 @@ import { store } from "../store.js";
 
 export default {
   name: "MoviesList",
+  data() {
+    return {
+      store,
+    };
+  },
   components: {
     MovieItem,
-  },
-  data() {
-    store;
   },
 };
 </script>

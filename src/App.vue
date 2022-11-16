@@ -9,9 +9,11 @@ export default {
     return {
       store,
       config,
-      MoviesList,
       queryInput: "",
     };
+  },
+  components: {
+    MoviesList,
   },
   methods: {
     callApi(url, params) {
@@ -19,18 +21,16 @@ export default {
       axios
         .get(url, params)
         .then((response) => {
-          console.log(response);
-          this.store.movies = response.data;
-          console.log(this.store.movies);
+          console.log(response, "response");
+          this.store.movies = response.data.results;
+          console.log(response.data, "response.data");
+          console.log(store.movies, "store.moviesarray");
         })
         .catch((err) => {
           console.error(err.message);
           this.store.error = err.message;
         });
     },
-  },
-  mounted() {
-    //this.callApi(this.store.API_URL, config);
   },
 };
 </script>
@@ -47,5 +47,5 @@ export default {
 
 1. Collegare l'input al config.query per popolarlo dinamicamente - v-model - ok
 2. intercettare l'evento al click sul botttone - @click  e richiamo la funzione callApi() - ok
-3. la funzione mi restituisce i dati richiesti e li stampa a schermo nei paragrafi
+3. la funzione mi restituisce i dati richiesti e li stampa a schermo nei paragrafi - ok
  -->

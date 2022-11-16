@@ -3,14 +3,15 @@ export default {
   name: "MovieItem",
   props: {
     movie: Object,
+    serie: Object,
   },
 };
 </script>
 
 <template>
   <li>
-    <p>Titolo: {{ movie.title }}</p>
-    <p>Titolo originale: {{ movie.original_title }}</p>
+    <p>Titolo: {{ movie.title || movie.name }}</p>
+    <p>Titolo originale: {{ movie.original_title || movie.original_name }}</p>
     <p>
       Lingua originale:
       <img

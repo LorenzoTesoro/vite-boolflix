@@ -16,6 +16,7 @@ export default {
 </script>
 
 <template>
+  <h2>Movies</h2>
   <ul>
     <MovieItem :movie="movie" v-for="movie in store.movies" />
   </ul>

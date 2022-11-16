@@ -16,13 +16,21 @@ export default {
   },
   methods: {
     callApi(url, params) {
+      this.store.movies = [];
       this.store.config.params.query = this.queryInput;
       axios
         .get(url, params)
         .then((response) => {
           console.log(response, "response");
-          this.store.movies = response.data.results;
-          console.log(store.movies.media_type, "store.moviesarray");
+
+          response.data.results.forEach((item) => {
+            if (item.media_type === "movie" || item.media_type === "tv") {
+              this.store.movies.push(item);
+            }
+          });
+
+          console.log(response.data.results);
+          console.log(this.store.movies, "store.moviesarray");
         })
         .catch((err) => {
           console.error(err.message);

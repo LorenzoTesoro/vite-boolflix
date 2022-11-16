@@ -42,10 +42,3 @@ export default {
 </template>
 
 <style scoped></style>
-
-<!-- 
-
-1. Collegare l'input al config.query per popolarlo dinamicamente - v-model - ok
-2. intercettare l'evento al click sul botttone - @click  e richiamo la funzione callApi() - ok
-3. la funzione mi restituisce i dati richiesti e li stampa a schermo nei paragrafi - ok
- -->

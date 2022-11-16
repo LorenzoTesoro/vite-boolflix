@@ -10,6 +10,6 @@ export const config = {
   method: "get",
   params: {
     api_key: "63d68752590a1ed32e2214c0e46f4a63",
-    query: "matrix",
+    query: "",
   },
 };

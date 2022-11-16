@@ -1,20 +1,21 @@
 <script>
 import { config, store } from "./store.js";
 import axios from "axios";
+import MoviesList from "./components/MoviesList.vue";
 
 export default {
   name: "App",
   data() {
     return {
       store,
-      title: "",
-      originalTitle: "",
-      language: "",
-      mark: "",
+      config,
+      MoviesList,
+      queryInput: "",
     };
   },
   methods: {
     callApi(url, params) {
+      this.config.params.query = this.queryInput;
       axios
         .get(url, params)
         .then((response) => {
@@ -29,25 +30,22 @@ export default {
     },
   },
   mounted() {
-    this.callApi(this.store.API_URL, config);
+    //this.callApi(this.store.API_URL, config);
   },
 };
 </script>
 
 <template>
-  <input type="search" />
-  <button>Cerca</button>
-  <p>{{ title }}</p>
-  <p>{{ originalTitle }}</p>
-  <p>{{ language }}</p>
-  <p>{{ mark }}</p>
+  <input type="search" v-model="queryInput" />
+  <button @click="callApi(store.API_URL, config)">Cerca</button>
+  <MoviesList />
 </template>
 
 <style scoped></style>
 
 <!-- 
 
-1. Collegare l'input al config.query per popolarlo dinamicamente - v-model
-2. intercettare l'evento al click sul botttone - @click  e richiamo la funzione callApi()
+1. Collegare l'input al config.query per popolarlo dinamicamente - v-model - ok
+2. intercettare l'evento al click sul botttone - @click  e richiamo la funzione callApi() - ok
 3. la funzione mi restituisce i dati richiesti e li stampa a schermo nei paragrafi
  -->

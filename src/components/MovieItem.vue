@@ -5,6 +5,11 @@ export default {
     movie: Object,
     serie: Object,
   },
+  data() {
+    return {
+      stars: Math.round(this.movie.vote_average / 2),
+    };
+  },
 };
 </script>
 
@@ -38,8 +43,8 @@ export default {
       <span v-else>{{ movie.original_language }}</span>
     </p>
     <p class="star">
-      Voto medio: <font-awesome-icon icon="fa-solid fa-star" />
-      <!-- Todo: rendere dinamico il n di stelle generate -->
+      Voto medio:
+      <font-awesome-icon icon="fa-solid fa-star" v-for="n in stars" />
     </p>
   </li>
 </template>

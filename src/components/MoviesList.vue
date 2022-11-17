@@ -16,14 +16,13 @@ export default {
 </script>
 
 <template>
-  <h2>Movies</h2>
-  <ul class="">
+  <div class="row row-cols-4 g-5">
     <MovieItem :movie="movie" v-for="movie in store.movies" />
-  </ul>
+  </div>
 </template>
 
-<style>
-ul {
+<style lang="scss">
+.row {
   display: flex;
 }
 </style>

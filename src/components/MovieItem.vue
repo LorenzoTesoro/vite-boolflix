@@ -14,48 +14,84 @@ export default {
 </script>
 
 <template>
-  <li>
-    <img :src="`https://image.tmdb.org/t/p/w185${movie.poster_path}`" alt="" />
-    <p>Titolo: {{ movie.title || movie.name }}</p>
-    <p>Titolo originale: {{ movie.original_title || movie.original_name }}</p>
-    <p>
-      Lingua originale:
-
-      <!-- TODO: Aggiungere bandierine e esportare il tutto in un singolo file -->
-      <img
-        src="../assets/img/fr-flag.gif"
-        alt=""
-        v-if="movie.original_language === 'fr'"
-      />
-      <img
-        src="../assets/img/it-flag.gif"
-        alt=""
-        v-else-if="movie.original_language === 'it'"
-      />
-      <img
-        src="../assets/img/rs-flag.gif"
-        alt=""
-        v-else-if="movie.original_language === 'ru'"
-      />
-      <img
-        src="../assets/img/us-flag.gif"
-        alt=""
-        v-else-if="movie.original_language === 'en'"
-      />
-      <span v-else>{{ movie.original_language }}</span>
-    </p>
-    <p class="star">
-      Voto medio:
-      <font-awesome-icon icon="fa-solid fa-star" v-for="n in starsNumber" />
-    </p>
-  </li>
+  <div class="col">
+    <div class="card" :style="{backgroundImage: `url('https://image.tmdb.org/t/p/w342${movie.poster_path}')`}">
+      <div class="card-body">
+        <p class="card-title py-2 fs-5">
+          Titolo: <span>{{ movie.title || movie.name }}</span>
+        </p>
+        <p class="card-title py-2">
+          Titolo originale:
+          <span>{{ movie.original_title || movie.original_name }}</span>
+        </p>
+        <p class="card-text">
+          Lingua originale:
+          <!-- TODO: Aggiungere bandierine e esportare il tutto in un singolo file -->
+          <img
+            src="../assets/img/fr-flag.gif"
+            alt=""
+            v-if="movie.original_language === 'fr'"
+          />
+          <img
+            src="../assets/img/it-flag.gif"
+            alt=""
+            v-else-if="movie.original_language === 'it'"
+          />
+          <img
+            src="../assets/img/rs-flag.gif"
+            alt=""
+            v-else-if="movie.original_language === 'ru'"
+          />
+          <img
+            src="../assets/img/us-flag.gif"
+            alt=""
+            v-else-if="movie.original_language === 'en'"
+          />
+          <span v-else>{{ movie.original_language }}</span>
+        </p>
+        <p class="star card-text">
+          Voto:
+          <font-awesome-icon icon="fa-solid fa-star" v-for="n in starsNumber" />
+        </p>
+        <p class="card-text">Overview: {{ movie.overview }}</p>
+      </div>
+    </div>
+  </div>
 </template>
 
 <style lang="scss" scoped>
-@use "../node_modules/bootstrap/scss/bootstrap.scss";
-
 p img {
   width: 20px;
   aspect-ratio: 1;
+}
+
+.card{
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  &:hover .card-body{
+    background-color:rgba($color: #000000, $alpha: 0.8);
+
+    .card-title, .card-text{
+      display: block;
+    }
+  }
+}
+
+.card-body {
+  border: 1px solid white;
+  display: flex;
+  flex-direction: column;
+  padding-inline: 1rem;
+  height: 400px;
+  overflow-y: hidden;
+  font-size: 0.8rem;
+  padding-top: 1rem;
+  .card-text, .card-title {
+    display: none;
+  }
+  .fa-star {
+    color: goldenrod;
+  }
 }
 </style>

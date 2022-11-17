@@ -2,22 +2,22 @@
 import { store } from "./store.js";
 import axios from "axios";
 import MoviesList from "./components/MoviesList.vue";
+import SearchBox from "./components/SearchBox.vue";
 
 export default {
   name: "App",
   data() {
     return {
       store,
-      queryInput: "",
     };
   },
   components: {
     MoviesList,
+    SearchBox,
   },
   methods: {
     callApi(url, params) {
       this.store.movies = [];
-      this.store.config.params.query = this.queryInput;
       axios
         .get(url, params)
         .then((response) => {
@@ -42,12 +42,8 @@ export default {
 </script>
 
 <template>
-  <input type="search" v-model="queryInput" />
-  <button @click="callApi(store.API_URL, store.config)">Cerca</button>
+  <SearchBox @performSearch="callApi(store.API_URL, store.config)" />
   <MoviesList />
 </template>
 
 <style scoped></style>
-
-<!-- Con la stessa azione di ricerca
-dovremo prendere sia i film che corrispondono alla query, sia le serie tv-->

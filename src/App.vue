@@ -2,7 +2,7 @@
 import { store } from "./store.js";
 import axios from "axios";
 import MoviesList from "./components/MoviesList.vue";
-import SearchBox from "./components/SearchBox.vue";
+import AppHeader from "./components/layout/AppHeader.vue";
 
 export default {
   name: "App",
@@ -13,10 +13,11 @@ export default {
   },
   components: {
     MoviesList,
-    SearchBox,
+    AppHeader,
   },
   methods: {
     callApi(url, params) {
+      // TODO: svuotare input
       this.store.movies = [];
       axios
         .get(url, params)
@@ -42,7 +43,7 @@ export default {
 </script>
 
 <template>
-  <SearchBox @performSearch="callApi(store.API_URL, store.config)" />
+  <AppHeader @performSearch="callApi(store.API_URL, store.config)" />
   <MoviesList />
 </template>
 

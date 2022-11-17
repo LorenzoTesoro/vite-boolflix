@@ -7,7 +7,7 @@ export default {
   },
   data() {
     return {
-      stars: Math.round(this.movie.vote_average / 2),
+      starsNumber: Math.round(this.movie.vote_average / 2),
     };
   },
 };
@@ -20,6 +20,8 @@ export default {
     <p>Titolo originale: {{ movie.original_title || movie.original_name }}</p>
     <p>
       Lingua originale:
+
+      <!-- TODO: Aggiungere bandierine e esportare il tutto in un singolo file -->
       <img
         src="../assets/img/fr-flag.gif"
         alt=""
@@ -44,7 +46,7 @@ export default {
     </p>
     <p class="star">
       Voto medio:
-      <font-awesome-icon icon="fa-solid fa-star" v-for="n in stars" />
+      <font-awesome-icon icon="fa-solid fa-star" v-for="n in starsNumber" />
     </p>
   </li>
 </template>

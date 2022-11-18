@@ -1,6 +1,7 @@
 <script>
 import SearchBox from "../SearchBox.vue";
 import { store } from "../../store.js";
+import NavBar from "../NavBar.vue";
 
 export default {
   name: "AppHeader",
@@ -11,6 +12,7 @@ export default {
   },
   components: {
     SearchBox,
+    NavBar,
   },
 };
 </script>
@@ -18,9 +20,11 @@ export default {
 <template>
   <header>
     <div class="container">
-      <h1 class="text-uppercase">Boolfix</h1>
-      <!-- /. logo -->
-      <SearchBox @clickSearch="store.callApi(store.API_URL, store.config)" @keySearch="store.callApi(store.API_URL, store.config)"/>
+      <NavBar />
+      <SearchBox
+        @clickSearch="store.callApi(store.API_URL, store.config)"
+        @keySearch="store.callApi(store.API_URL, store.config)"
+      />
     </div>
   </header>
 </template>
@@ -29,8 +33,9 @@ export default {
 header {
   background-color: black;
   color: white;
-  padding-top:1rem;
-  padding-bottom:1rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  height: 10vh;
 
   .container {
     display: flex;

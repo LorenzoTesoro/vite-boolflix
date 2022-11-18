@@ -19,6 +19,7 @@ export default {
 
 <style lang="scss" scoped>
 main {
+  height: 80vh;
   padding: 2rem;
   background-color: rgb(41, 37, 37);
   color: white;

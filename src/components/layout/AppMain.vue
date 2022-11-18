@@ -24,5 +24,3 @@ main {
   color: white;
 }
 </style>
-
-<!-- tODO: FIX MAIN HEIGHT -->

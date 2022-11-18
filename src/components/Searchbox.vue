@@ -13,18 +13,10 @@ export default {
 
 <template>
   <div class="searchBox">
-    <input
-      type="search"
-      v-model="store.config.params.query"
-      placeholder="Search a movie"
-    />
-    <button class="rounded" @click="$emit('searchMovie')">Search</button>
+    <input type="search" @keypress.enter="$emit('keySearch')" v-model="store.config.params.query" placeholder="Search a movie"/>
+    <button class="rounded" @click="$emit('clickSearch')">Search</button>
   </div>
 </template>
-
-<!-- TODO: 
-    - fixare il keydown e capire perchè non funziona
-    - fixare placeholder -->
 
 <style lang="scss">
 input {

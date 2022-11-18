@@ -7,7 +7,7 @@ export default {
   },
   data() {
     return {
-      starsNumber: Math.round(this.movie.vote_average / 2),
+      starsNumber: Math.ceil(Math.round(this.movie.vote_average / 2)),
     };
   },
 };
@@ -20,7 +20,7 @@ export default {
         <p class="card-title py-2 fs-5">
           Titolo: <span>{{ movie.title || movie.name }}</span>
         </p>
-        <p class="card-title py-2">
+        <p class="card-title py-2" v-show="movie.title !== movie.original_title">
           Titolo originale:
           <span>{{ movie.original_title || movie.original_name }}</span>
         </p>
@@ -61,8 +61,9 @@ export default {
 
 <style lang="scss" scoped>
 p img {
-  width: 20px;
-  aspect-ratio: 1;
+  width: 25px;
+  height: 10px;
+  padding-left: 0.5rem;
 }
 
 .card{

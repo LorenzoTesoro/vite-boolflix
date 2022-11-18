@@ -20,7 +20,7 @@ export default {
     <div class="container">
       <h1 class="text-uppercase">Boolfix</h1>
       <!-- /. logo -->
-      <SearchBox @searchMovie="store.callApi(store.API_URL, store.config)" />
+      <SearchBox @clickSearch="store.callApi(store.API_URL, store.config)" @keySearch="store.callApi(store.API_URL, store.config)"/>
     </div>
   </header>
 </template>
@@ -29,6 +29,8 @@ export default {
 header {
   background-color: black;
   color: white;
+  padding-top:1rem;
+  padding-bottom:1rem;
 
   .container {
     display: flex;

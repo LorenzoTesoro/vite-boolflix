@@ -1,4 +1,7 @@
 <script>
+import { store } from "../store.js";
+import axios from "axios";
+
 export default {
   name: "MovieItem",
   props: {
@@ -7,6 +10,8 @@ export default {
   },
   data() {
     return {
+      store,
+      actors: [],
       starsNumber: Math.ceil(Math.round(this.movie.vote_average / 2)),
       flags: ["it", "fr", "en", "rs"],
     };
@@ -22,6 +27,27 @@ export default {
         return lang;
       }
     },
+    callCastApi(id) {
+      const url = `${store.cast_url}/${id}/credits?api_key=${store.config.params.api_key}`;
+
+      this.actors = [];
+
+      axios
+        .get(url)
+        .then((response) => {
+          console.log(response.data.cast);
+
+          response.data.cast.forEach((actor) => {
+            this.actors.push(actor);
+          });
+
+          console.log(this.actors, "cast");
+        })
+        .catch((err) => {
+          console.error(err.message);
+          this.store.error = err.message;
+        });
+    },
   },
 };
 </script>
@@ -34,7 +60,7 @@ export default {
         backgroundImage: `url('https://image.tmdb.org/t/p/w342${movie.poster_path}')`,
       }"
     >
-      <div class="card-body">
+      <div class="card-body" @click="callCastApi(movie.id)">
         <h5 class="card-title py-2 fs-5">
           Titolo: {{ movie.title || movie.name }}
         </h5>
@@ -59,6 +85,9 @@ export default {
           <font-awesome-icon icon="fa-solid fa-star" v-for="n in starsNumber" />
         </div>
         <p class="card-text pt-3">Overview: {{ movie.overview }}</p>
+        <p class="card-text" v-for="actor in actors">
+          Attori: {{ actor.name }}
+        </p>
       </div>
     </div>
   </div>
@@ -77,6 +106,7 @@ p img {
 
   &:hover .card-body {
     background-color: rgba($color: #000000, $alpha: 0.8);
+    transition: all 0.4s ease-in-out;
 
     .card-title,
     .card-text {
@@ -103,3 +133,10 @@ p img {
   }
 }
 </style>
+
+<!-- Partendo da un film o da una serie, richiedere all'API quali sono gli attori che fanno
+parte del cast aggiungendo alla nostra scheda Film / Serie SOLO i primi 5 restituiti
+dall’API con Nome e Cognome, e i generi associati al film con questo schema:
+“Genere 1, Genere 2, …”. -->
+
+<!-- 1. aggiungere alla scheda film/serie i primi 5 attori del cast -->

@@ -4,6 +4,7 @@ import axios from "axios";
 export const store = reactive({
   API_URL: "https://api.themoviedb.org/3/search/multi",
   cast_url: "https://api.themoviedb.org/3/movie",
+  genres_url: "https://api.themoviedb.org/3/genre/movie/list",
   ids: [],
   movies: [],
   error: null,
@@ -24,7 +25,6 @@ export const store = reactive({
         response.data.results.forEach((item) => {
           if (item.media_type === "movie" || item.media_type === "tv") {
             store.movies.push(item);
-            store.ids.push(item.id);
           }
         });
         console.log(response.data.results);
@@ -38,3 +38,7 @@ export const store = reactive({
     store.config.params.query = "";
   },
 });
+
+// TODO:
+// - ADD CASTCALLAPI TO STATE
+// - REFACTORING

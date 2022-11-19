@@ -17,6 +17,12 @@ export default {
 };
 </script>
 
+<!-- TODO: 
+
+- search icon: hover on it, show input
+- add icons: category, user, notifications
+-->
+
 <template>
   <header>
     <div class="container">

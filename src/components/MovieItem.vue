@@ -11,6 +11,7 @@ export default {
   data() {
     return {
       store,
+      genres: [],
       actors: [],
       starsNumber: Math.ceil(Math.round(this.movie.vote_average / 2)),
       flags: ["it", "fr", "en", "rs"],
@@ -31,6 +32,7 @@ export default {
       const url = `${store.cast_url}/${id}/credits?api_key=${store.config.params.api_key}`;
 
       this.actors = [];
+      this.genres = [];
 
       axios
         .get(url)
@@ -38,10 +40,31 @@ export default {
           console.log(response.data.cast);
 
           response.data.cast.forEach((actor) => {
-            this.actors.push(actor);
+            if (this.actors.length < 5) {
+              this.actors.push(actor);
+            }
           });
 
           console.log(this.actors, "cast");
+        })
+        .catch((err) => {
+          console.error(err.message);
+          this.store.error = err.message;
+        });
+
+      const genres_url = `${store.genres_url}?api_key=${store.config.params.api_key}`;
+
+      axios
+        .get(genres_url)
+        .then((response) => {
+          console.log(response.data.genres);
+
+          response.data.genres.forEach((genre) => {
+            if (this.genres.length < 4) {
+              this.genres.push(genre.name);
+            }
+          });
+          console.log(this.genres, "generi");
         })
         .catch((err) => {
           console.error(err.message);
@@ -85,9 +108,14 @@ export default {
           <font-awesome-icon icon="fa-solid fa-star" v-for="n in starsNumber" />
         </div>
         <p class="card-text pt-3">Overview: {{ movie.overview }}</p>
-        <p class="card-text" v-for="actor in actors">
-          Attori: {{ actor.name }}
-        </p>
+        <div class="movie_genres py-2">
+          Genere:
+          <span class="" v-for="genre in genres">{{ genre }},</span>
+        </div>
+        <div class="movie_actors">
+          Attori:
+          <span class="" v-for="actor in actors"> {{ actor.name }}, </span>
+        </div>
       </div>
     </div>
   </div>
@@ -109,7 +137,9 @@ p img {
     transition: all 0.4s ease-in-out;
 
     .card-title,
-    .card-text {
+    .card-text,
+    .movie_actors,
+    .movie_genres {
       display: block;
     }
   }
@@ -125,6 +155,8 @@ p img {
   font-size: 0.8rem;
   padding-top: 1rem;
   .card-text,
+  .movie_genres,
+  .movie_actors,
   .card-title {
     display: none;
   }
@@ -134,9 +166,13 @@ p img {
 }
 </style>
 
-<!-- Partendo da un film o da una serie, richiedere all'API quali sono gli attori che fanno
-parte del cast aggiungendo alla nostra scheda Film / Serie SOLO i primi 5 restituiti
-dall’API con Nome e Cognome, e i generi associati al film con questo schema:
-“Genere 1, Genere 2, …”. -->
-
-<!-- 1. aggiungere alla scheda film/serie i primi 5 attori del cast -->
+<!-- TODO:
+- Milestone 5: 
+  Partendo da un film o da una serie, richiedere all'API quali sono gli attori che fanno
+  parte del cast aggiungendo alla nostra scheda Film / Serie SOLO i primi 5 restituiti
+  dall’API con Nome e Cognome, e i generi associati al film con questo schema:
+  “Genere 1, Genere 2, …”.
+- Milestone 6:
+  Creare una lista di generi richiedendo quelli disponibili all'API e creare dei filtri con i
+  generi tv e movie per mostrare/nascondere le schede ottenute con la ricerca.
+-->

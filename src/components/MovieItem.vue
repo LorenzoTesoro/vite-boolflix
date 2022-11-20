@@ -28,8 +28,8 @@ export default {
         return lang;
       }
     },
-    callCastApi(id) {
-      const url = `${store.cast_url}/${id}/credits?api_key=${store.config.params.api_key}`;
+    callCastGenresApi(id) {
+      const url = `${store.urls.cast_url}/${id}/credits?api_key=${store.config.params.api_key}`;
 
       this.actors = [];
       this.genres = [];
@@ -37,34 +37,27 @@ export default {
       axios
         .get(url)
         .then((response) => {
-          console.log(response.data.cast);
-
           response.data.cast.forEach((actor) => {
             if (this.actors.length < 5) {
               this.actors.push(actor);
             }
           });
-
-          console.log(this.actors, "cast");
         })
         .catch((err) => {
           console.error(err.message);
           this.store.error = err.message;
         });
 
-      const genres_url = `${store.genres_url}?api_key=${store.config.params.api_key}`;
+      const genres_url = `${store.urls.genres_url}?api_key=${store.config.params.api_key}`;
 
       axios
         .get(genres_url)
         .then((response) => {
-          console.log(response.data.genres);
-
           response.data.genres.forEach((genre) => {
             if (this.genres.length < 4) {
               this.genres.push(genre.name);
             }
           });
-          console.log(this.genres, "generi");
         })
         .catch((err) => {
           console.error(err.message);
@@ -83,7 +76,7 @@ export default {
         backgroundImage: `url('https://image.tmdb.org/t/p/w342${movie.poster_path}')`,
       }"
     >
-      <div class="card-body" @click="callCastApi(movie.id)">
+      <div class="card-body" @click="callCastGenresApi(movie.id)">
         <h5 class="card-title py-2 fs-5">
           Titolo: {{ movie.title || movie.name }}
         </h5>

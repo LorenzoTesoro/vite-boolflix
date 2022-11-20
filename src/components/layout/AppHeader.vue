@@ -28,8 +28,8 @@ export default {
     <div class="container">
       <NavBar />
       <SearchBox
-        @clickSearch="store.callApi(store.API_URL, store.config)"
-        @keySearch="store.callApi(store.API_URL, store.config)"
+        @clickSearch="store.callApi(store.urls.base_url, store.config)"
+        @keySearch="store.callApi(store.urls.base_url, store.config)"
       />
     </div>
   </header>

@@ -121,57 +121,7 @@ export default {
   </div>
 </template>
 
-<style lang="scss" scoped>
-p img {
-  width: 25px;
-  height: 10px;
-  padding-left: 0.5rem;
-}
-
-.card {
-  background-repeat: no-repeat;
-  background-size: cover;
-
-  &:hover .card-body {
-    background-color: rgba($color: #000000, $alpha: 0.8);
-    transition: all 0.4s ease-in-out;
-
-    .card-title,
-    .card-text,
-    .movie_actors,
-    .movie_genres {
-      display: block;
-    }
-  }
-}
-
-.card-body {
-  border: 1px solid white;
-  display: flex;
-  flex-direction: column;
-  padding-inline: 1rem;
-  height: 400px;
-  overflow-y: hidden;
-  font-size: 0.8rem;
-  padding-top: 1rem;
-  .card-text,
-  .movie_genres,
-  .movie_actors,
-  .card-title {
-    display: none;
-  }
-  .fa-star {
-    color: goldenrod;
-  }
-}
-</style>
-
 <!-- TODO:
-- Milestone 5: 
-  Partendo da un film o da una serie, richiedere all'API quali sono gli attori che fanno
-  parte del cast aggiungendo alla nostra scheda Film / Serie SOLO i primi 5 restituiti
-  dall’API con Nome e Cognome, e i generi associati al film con questo schema:
-  “Genere 1, Genere 2, …”.
 - Milestone 6:
   Creare una lista di generi richiedendo quelli disponibili all'API e creare dei filtri con i
   generi tv e movie per mostrare/nascondere le schede ottenute con la ricerca.

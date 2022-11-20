@@ -20,9 +20,3 @@ export default {
     <MovieItem :movie="movie" v-for="movie in store.movies" />
   </div>
 </template>
-
-<style lang="scss">
-.row {
-  display: flex;
-}
-</style>

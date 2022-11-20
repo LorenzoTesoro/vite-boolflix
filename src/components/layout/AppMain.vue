@@ -16,13 +16,3 @@ export default {
     </div>
   </main>
 </template>
-
-<style lang="scss" scoped>
-.container {
-  padding-bottom: 1rem;
-}
-main {
-  padding: 2rem;
-  color: white;
-}
-</style>

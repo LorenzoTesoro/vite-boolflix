@@ -7,7 +7,7 @@ export default {
 <template>
   <div class="d-flex">
     <h1 class="text-uppercase">Boolfix</h1>
-    <nav class="navbar navbar-expand-sm navbar-light">
+    <nav class="navbar navbar-expand-sm navbar-light ps-2">
       <div class="container">
         <div class="collapse navbar-collapse" id="collapsibleNavId">
           <ul class="navbar-nav me-auto mt-2 mt-lg-0">
@@ -32,14 +32,3 @@ export default {
     </nav>
   </div>
 </template>
-
-<style lang="scss" scoped>
-h1 {
-  color: rgb(210, 5, 5);
-}
-.nav-item {
-  a {
-    color: white;
-  }
-}
-</style>

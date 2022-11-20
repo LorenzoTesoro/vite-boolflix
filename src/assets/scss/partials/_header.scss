@@ -1,0 +1,56 @@
+header {
+  background-color: black;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  height: 10vh;
+
+  h1 {
+    color: rgb(210, 5, 5);
+  }
+  .nav-item {
+    .nav-link {
+      color: white;
+    }
+  }
+
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .searchbox {
+      display: flex;
+
+      input {
+        background: white;
+        border: none;
+        outline: none;
+        color: black;
+        width: 0;
+        padding: 0;
+
+        &::placeholder {
+          padding-left: 0.5rem;
+        }
+      }
+      button {
+        background: none;
+        border: none;
+        outline: none;
+        padding: 0.5rem 0.7rem;
+
+        .search-icon {
+          color: white;
+          font-size: 1rem;
+          cursor: pointer;
+        }
+      }
+      /* hover on input */
+      &:hover input {
+        width: auto;
+        padding: 0.3rem 0.5rem;
+        transition: 0.45s;
+      }
+    }
+  }
+}

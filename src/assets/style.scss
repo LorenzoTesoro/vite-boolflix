@@ -1,4 +1,6 @@
 @use "../node_modules/bootstrap/scss/bootstrap.scss";
+@use "./scss/partials/header.scss";
+@use "./scss/partials/main.scss";
 
 body {
   min-height: 100vh;

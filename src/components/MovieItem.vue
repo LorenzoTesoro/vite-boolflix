@@ -76,7 +76,7 @@ export default {
         backgroundImage: `url('https://image.tmdb.org/t/p/w342${movie.poster_path}')`,
       }"
     >
-      <div class="card-body" @click="callCastGenresApi(movie.id)">
+      <div class="card-body" @mouseover="callCastGenresApi(movie.id)">
         <h5 class="card-title py-2 fs-5">
           Titolo: {{ movie.title || movie.name }}
         </h5>
